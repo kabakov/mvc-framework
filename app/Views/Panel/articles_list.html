@@ -1,0 +1,29 @@
+{% extends "@panel/template.html" %}
+
+{% block title%}{{title}}{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h1>Статьи</h1>
+	{% for article in articles %}
+		<div class="article">
+			<a href='/mvc-framework/panel/articles/show/{{ article.id }}'><h3>{{ article.title}}</h3></a>
+			<p>{{ article.body }}</p>
+			<hr>
+		</div>
+	{% else %} 
+		<p class="bg-warning">нет статей</p>
+	{% endfor %}
+		<h2>Добавить статью</h2>
+			<form method="post" action="/mvc-framework/panel/articles/add/">
+			<input type="hidden" name="add" value="y">
+				Заголовок:
+				<br><input type="text" name="title"><br>
+				Статья:<br>
+				<textarea name="body" cols="40" rows="3"></textarea><br>
+				<p><input type="submit" value="Отправить">
+			   <input type="reset" value="Очистить"></p>
+			</form>
+	<p><?=$errorAddTitle?></p>	
+</div>
+{% endblock %}

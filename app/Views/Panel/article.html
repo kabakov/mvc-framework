@@ -1,0 +1,30 @@
+{% extends "@panel/template.html" %}
+
+{% block title %} {{ article.title }} {% endblock %}
+{% block content %}
+	<div class="container">
+		<div class="col-md-6">
+			<h1>{{ article.title }}</h1>
+			<p>{{ article.body }}</p>
+			<div>
+				<a href="/mvc-framework/panel/"><button type="button" class="btn btn-default">Вернуться назад</button></a>
+
+				<a href='/mvc-framework/panel/articles/delete/{{ article.id }}'><button type="button" class="btn btn-danger">Удалить</button></a>
+
+			</div>
+		</div>
+		<div class="col-md-6">
+			<h2>Изменить статью</h2>
+			<form method="post" action="/mvc-framework/panel/articles/update/">
+				<input type="hidden" name="id" value="{{ article.id }}">
+				Заголовок:
+				<br><input type="text" name="title"><br>
+				Статья:<br>
+				<textarea name="body" cols="40" rows="3"></textarea><br>
+				<input type="hidden" name="modif" value="y">
+				<p><input type="submit" value="Отправить">
+					<input type="reset" value="Очистить"></p>
+			</form>
+		</div>
+	</div>
+{% endblock %}

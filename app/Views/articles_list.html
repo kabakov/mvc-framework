@@ -1,0 +1,19 @@
+{% extends "template.html" %}
+
+{% block title%}{{title}}{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h1>Статьи</h1>
+	{% for article in articles %}
+		<div class="article">
+			<a href='/mvc-framework/articles/show/{{ article.id }}'><h3>{{ article.title}}</h3></a>
+			<p>{{ article.body }}</p>
+			<hr>
+		</div>
+	{% else %} 
+		<p class="bg-warning">нет статей</p>
+	{% endfor %}
+	<p><?=$errorAddTitle?></p>	
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "template.html" %}
+
+{% block title %} {{ article.title }} {% endblock %}
+{% block content %}
+	<div class="container">
+		<div class="col-md-6">
+			<h1>{{ article.title }}</h1>
+			<p>{{ article.body }}</p>
+			<h2>Коментарии:</h2>
+			{% for comments in comments %}
+				<div class="article">
+					<p>{{ comments.body }}</p>
+					<i>{{ comments.date_created }}</i>
+					<hr>
+				</div>
+			{% else %}
+				<p class="bg-warning">нет коментариев</p>
+			{% endfor %}
+			<div>
+				<a href="/mvc-framework/"><button type="button" class="btn btn-default">Вернуться назад</button></a>
+
+			</div>
+		</div>
+		<div class="col-md-6">
+			<h2>Добавить коментарий</h2>
+			<form method="post" action="/mvc-framework/comment/add/">
+				<input type="hidden" name="post_id" value="{{ article.id }}">
+				Ваш коментарий:<br>
+				<textarea name="body" cols="40" rows="3"></textarea><br>
+				<input type="hidden" name="comment" value="y">
+				<p><input type="submit" value="Отправить">
+					<input type="reset" value="Очистить"></p>
+			</form>
+
+		</div>
+	</div>
+{% endblock %}

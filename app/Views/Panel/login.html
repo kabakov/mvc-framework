@@ -1,0 +1,20 @@
+{% extends "@panel/template.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container col-xs-6">
+        {% for error in errors %}
+        <div class="alert alert-danger" role="alert"> {{ error }} </div>
+        {% endfor %}
+        <h2>{{ title }}</h2>
+        <form action="/mvc-framework/panel/tryLogin/" method="post">
+            <div class="form-group">
+                <label for="username">{{ article.name }}</label>
+                <input type="text" class="form-control" id="username" value="" name="username">
+                <label for="password">Пароль</label>
+                <input type="password" class="form-control" id="password" value="" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary" name="login">Войти</button>
+            <a href="/mvc-framework/panel/register/" class="btn btn-info">Зарегестрироваться</a>
+        </form>
+    </div>
+{% endblock %}
